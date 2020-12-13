@@ -18,6 +18,7 @@
 
 <script>
 import Vue from 'vue'
+import randomizeColorsBus from '../randomizeColors-bus'
 
 export default Vue.extend({
   data() {
@@ -65,7 +66,6 @@ export default Vue.extend({
       fetch(`https://www.thecolorapi.com/id?rgb=(${this.valueRed},${this.valueGreen},${this.valueBlue})`)
         .then(response => response.json())
         .then(data => {
-          console.log(data)
           this.colorName = data.name.value
           this.colorHex = data.hex.value
         })
@@ -73,6 +73,11 @@ export default Vue.extend({
   },
   mounted() {
     this.randomBackground()
+    randomizeColorsBus.$on('changeColor', () => {
+      if (this.locked) return
+
+      this.randomBackground()
+    })
   }
 })
 </script>
