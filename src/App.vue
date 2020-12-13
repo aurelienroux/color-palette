@@ -17,6 +17,11 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/styles/index.scss';
+:root {
+  font-size: 62.5%;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -24,5 +29,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+
+  div {
+    font-size: 1.5rem;
+  }
 }
 </style>
