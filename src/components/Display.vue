@@ -19,7 +19,6 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .display {
-  border: 1px solid blue;
   display: flex;
   flex: 4;
 }

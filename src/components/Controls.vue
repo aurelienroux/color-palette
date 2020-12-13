@@ -12,7 +12,6 @@ export default Vue.extend({})
 
 <style lang="scss" scoped>
 .controls {
-  border: 1px solid red;
   flex: 1;
 }
 </style>
