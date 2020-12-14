@@ -1,12 +1,9 @@
 <template>
   <div class="color" :class="{ dark: textColor }" :style="{ backgroundColor: bgColor }">
-    <button @click="toggleLock">lock {{ locked }}</button>
-
-    <h2>{{ colorHex }}</h2>
-
-    <h2>{{ colorName }}</h2>
-
+    <Title :colorName="colorName" :colorHex="colorHex" />
     <button @click="showCommandIndex()">show command</button>
+    <button @click="toggleLock">lock {{ locked }}</button>
+    <h3 v-if="!loading">loading</h3>
 
     <div v-if="commandIndex === index" class="drawers">
       <div class="drawer">
@@ -36,20 +33,22 @@
         </div>
       </div>
     </div>
-
-    <h3 v-if="loading">loading</h3>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import randomizeColorsBus from '../randomizeColors-bus'
+import Title from '@/components/Title'
 
 export default Vue.extend({
   props: {
     index: {
       type: Number
     }
+  },
+  components: {
+    Title
   },
   data() {
     return {
@@ -171,10 +170,12 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .color {
-  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
   flex: 1;
-  padding: 4rem;
   min-height: 19rem;
+  padding: 2rem;
+  position: relative;
 
   &.dark {
     color: white;
@@ -187,7 +188,7 @@ export default Vue.extend({
     left: calc(50% - 12rem);
     min-width: 24rem;
     position: absolute;
-    top: 16rem;
+    bottom: 20rem;
     z-index: 11;
     background: white;
   }
