@@ -1,6 +1,6 @@
 <template>
   <div class="display">
-    <Color v-for="(display, index) in colorDisplays" :key="index" />
+    <Color v-for="(display, index) in colorDisplays" :key="index" :index="index" />
   </div>
 </template>
 
@@ -24,5 +24,10 @@ export default Vue.extend({
 .display {
   display: flex;
   flex: 4;
+  flex-direction: column;
+
+  @include for-desktop-up {
+    flex-direction: row;
+  }
 }
 </style>

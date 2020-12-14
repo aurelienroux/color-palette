@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    colors: 3
+    colors: 3,
+    colorCommand: null
   },
   mutations: {
     addColor(state) {
@@ -13,6 +14,9 @@ export default new Vuex.Store({
     },
     removeColor(state) {
       state.colors--
+    },
+    commandIndex(state, index) {
+      state.colorCommand = index
     }
   },
   actions: {},
