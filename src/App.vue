@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     <Display />
-    <Controls />
+    <AppControls />
   </div>
 </template>
 
 <script>
-import Controls from '@/components/Controls.vue'
+import AppControls from '@/components/AppControls.vue'
 import Display from '@/components/Display.vue'
 
 export default {
   name: 'App',
   components: {
-    Controls,
+    AppControls,
     Display
   }
 }
