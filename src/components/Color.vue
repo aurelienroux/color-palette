@@ -72,11 +72,12 @@ export default Vue.extend({
 
       fetch(`https://www.thecolorapi.com/id?rgb=(${this.valueRed},${this.valueGreen},${this.valueBlue})`)
         .then(response => response.json())
-        .then(data => {
-          this.colorName = data.name.value
-          this.colorHex = data.hex.clean
-          this.loading = false
-        })
+        .then(data => this.updateColorData(data))
+    },
+    updateColorData(data) {
+      this.colorName = data.name.value
+      this.colorHex = data.hex.clean
+      this.loading = false
     }
   },
   watch: {
@@ -94,6 +95,24 @@ export default Vue.extend({
           this.valueGreen = data.rgb.g
           this.valueBlue = data.rgb.b
         })
+    },
+    valueRed: function(value) {
+      this.loading = true
+      fetch(`https://www.thecolorapi.com/id?rgb=(${value},${this.valueGreen},${this.valueBlue})`)
+        .then(response => response.json())
+        .then(data => this.updateColorData(data))
+    },
+    valueGreen: function(value) {
+      this.loading = true
+      fetch(`https://www.thecolorapi.com/id?rgb=(${this.valueRed},${value},${this.valueBlue})`)
+        .then(response => response.json())
+        .then(data => this.updateColorData(data))
+    },
+    valueBlue: function(value) {
+      this.loading = true
+      fetch(`https://www.thecolorapi.com/id?rgb=(${this.valueRed},${this.valueGreen},${value})`)
+        .then(response => response.json())
+        .then(data => this.updateColorData(data))
     }
   },
   mounted() {
