@@ -1,8 +1,6 @@
 <template>
   <div class="display">
-    <Color />
-    <Color />
-    <Color />
+    <Color v-for="(display, index) in colorDisplays" :key="index" />
   </div>
 </template>
 
@@ -13,6 +11,11 @@ import Color from '@/components/Color.vue'
 export default Vue.extend({
   components: {
     Color
+  },
+  computed: {
+    colorDisplays() {
+      return this.$store.state.colors
+    }
   }
 })
 </script>
