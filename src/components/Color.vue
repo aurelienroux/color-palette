@@ -12,7 +12,11 @@
     </div>
     <h2>{{ colorHex }}</h2>
     <h2>{{ colorName }}</h2>
+    <h3 v-if="loading">loading</h3>
     <button @click="randomBackground">random</button>
+    <div>
+      <input type="text" maxlength="6" :placeholder="colorHex" v-model="searchHex" />
+    </div>
   </div>
 </template>
 
@@ -26,6 +30,8 @@ export default Vue.extend({
       colorName: null,
       colorHex: null,
       locked: false,
+      loading: false,
+      searchHex: null,
       valueRed: 0,
       valueGreen: 0,
       valueBlue: 0
@@ -62,12 +68,31 @@ export default Vue.extend({
       this.valueRed = Math.floor(Math.random() * 256)
       this.valueGreen = Math.floor(Math.random() * 256)
       this.valueBlue = Math.floor(Math.random() * 256)
+      this.loading = true
 
       fetch(`https://www.thecolorapi.com/id?rgb=(${this.valueRed},${this.valueGreen},${this.valueBlue})`)
         .then(response => response.json())
         .then(data => {
           this.colorName = data.name.value
-          this.colorHex = data.hex.value
+          this.colorHex = data.hex.clean
+          this.loading = false
+        })
+    }
+  },
+  watch: {
+    searchHex: function(value) {
+      if (!value.match(/[0-9A-Fa-f]{6}/g)) return
+      this.loading = true
+
+      fetch(`https://www.thecolorapi.com/id?hex=${value}`)
+        .then(response => response.json())
+        .then(data => {
+          this.colorName = data.name.value
+          this.colorHex = data.hex.clean
+          this.loading = false
+          this.valueRed = data.rgb.r
+          this.valueGreen = data.rgb.g
+          this.valueBlue = data.rgb.b
         })
     }
   },
