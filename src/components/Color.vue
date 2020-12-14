@@ -2,21 +2,34 @@
   <div class="color" :class="{ dark: textColor }" :style="{ backgroundColor: bgColor }">
     <button @click="toggleLock">lock</button>
 
-    <div v-if="!locked">
-      <div>red: {{ valueRed }}</div>
-      <input type="range" min="0" max="255" v-model="valueRed" />
-      <div>green: {{ valueGreen }}</div>
-      <input type="range" min="0" max="255" v-model="valueGreen" />
-      <div>blue: {{ valueBlue }}</div>
-      <input type="range" min="0" max="255" v-model="valueBlue" />
-    </div>
     <h2>{{ colorHex }}</h2>
     <h2>{{ colorName }}</h2>
-    <h3 v-if="loading">loading</h3>
-    <button @click="randomBackground">random</button>
-    <div>
-      <input type="text" maxlength="6" :placeholder="colorHex" v-model="searchHex" />
+
+    <button @click="showCommand = !showCommand">show command</button>
+    <div v-if="showCommand" class="drawers">
+      <div class="drawer">
+        <button @click="randomBackground">random</button>
+      </div>
+      <div class="drawer" :class="{ open: opened === 'rgb' }" @click="toggleDrawer('rgb')">
+        <h3>rgb</h3>
+        <div class="container">
+          <div>red: {{ valueRed }}</div>
+          <input type="range" min="0" max="255" v-model="valueRed" />
+          <div>green: {{ valueGreen }}</div>
+          <input type="range" min="0" max="255" v-model="valueGreen" />
+          <div>blue: {{ valueBlue }}</div>
+          <input type="range" min="0" max="255" v-model="valueBlue" />
+        </div>
+      </div>
+      <div class="drawer" :class="{ open: opened === 'picker' }" @click="toggleDrawer('picker')">
+        <h3>hex</h3>
+        <div class="container">
+          <input type="text" maxlength="6" :placeholder="colorHex" v-model="searchHex" />
+        </div>
+      </div>
     </div>
+
+    <h3 v-if="loading">loading</h3>
   </div>
 </template>
 
@@ -31,7 +44,9 @@ export default Vue.extend({
       colorHex: null,
       locked: false,
       loading: false,
+      opened: 'rgb',
       searchHex: null,
+      showCommand: true,
       valueRed: 0,
       valueGreen: 0,
       valueBlue: 0
@@ -61,6 +76,9 @@ export default Vue.extend({
     }
   },
   methods: {
+    toggleDrawer(drawer) {
+      this.opened = drawer
+    },
     toggleLock() {
       this.locked = !this.locked
     },
@@ -120,6 +138,7 @@ export default Vue.extend({
     randomizeColorsBus.$on('changeColor', () => {
       if (this.locked) return
 
+      this.showCommand = false
       this.randomBackground()
     })
   }
@@ -133,6 +152,21 @@ export default Vue.extend({
 
   &.dark {
     color: white;
+  }
+
+  .drawer {
+    border: 1px solid;
+
+    & .container {
+      box-sizing: border-box;
+      overflow: hidden;
+      height: 0;
+    }
+
+    &.open .container {
+      padding: 2rem;
+      height: auto;
+    }
   }
 }
 </style>
