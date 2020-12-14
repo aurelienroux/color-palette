@@ -1,19 +1,17 @@
 <template>
   <div class="color-controls">
-    <font-awesome-icon v-if="!loading" :icon="['fas', 'spinner']" spin />
+    <font-awesome-icon class="button--icon" v-if="loading" :icon="['fas', 'spinner']" spin />
 
-    <button @click="showCommandIndex">
-      <font-awesome-icon v-if="!loading" :icon="['fas', 'paint-brush']" />
+    <button class="button--icon" :class="{ 'button--icon__dark': textColor }" @click="showCommandIndex">
+      <font-awesome-icon :icon="['fas', 'paint-brush']" />
     </button>
 
-    <button @click="toggleLock">
-      <div v-if="locked">
-        <font-awesome-icon v-if="!loading" :icon="['fas', 'lock']" />
-      </div>
-      <div v-else>
-        <font-awesome-icon v-if="!loading" :icon="['fas', 'lock-open']" />
-      </div>
+    <button class="button--icon" :class="{ 'button--icon__dark': textColor }" @click="toggleLock">
+      <font-awesome-icon v-if="locked" :icon="['fas', 'lock']" />
+      <font-awesome-icon v-if="!locked" :icon="['fas', 'lock-open']" />
     </button>
+
+    {{ textColor }}
   </div>
 </template>
 
@@ -26,6 +24,9 @@ export default Vue.extend({
       type: Boolean
     },
     locked: {
+      type: Boolean
+    },
+    textColor: {
       type: Boolean
     }
   },
@@ -42,10 +43,22 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .color-controls {
-  border: 1px solid;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .button--icon {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 3rem;
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+
+  .button--icon__dark {
+    color: white;
+  }
 }
 </style>

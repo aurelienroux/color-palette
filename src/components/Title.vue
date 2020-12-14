@@ -22,8 +22,6 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .title {
-  border: 1px solid;
-
   h2 {
     font-size: 3rem;
   }

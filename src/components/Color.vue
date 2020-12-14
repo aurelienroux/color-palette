@@ -5,6 +5,7 @@
     <ColorControls
       :loading="loading"
       :locked="locked"
+      :textColor="textColor"
       @toggleLock="toggleLock"
       @showCommandIndex="showCommandIndex"
     />
