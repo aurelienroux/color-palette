@@ -3,7 +3,6 @@
     <Title :colorName="colorName" :colorHex="colorHex" />
 
     <ColorControls
-      :loading="loading"
       :locked="locked"
       :textColor="textColor"
       @toggleLock="toggleLock"
@@ -62,7 +61,6 @@ export default Vue.extend({
       colorName: null,
       colorHex: null,
       locked: false,
-      loading: false,
       opened: null,
       searchHex: null,
       showCommand: false,
@@ -116,7 +114,6 @@ export default Vue.extend({
       this.valueRed = Math.floor(Math.random() * 256)
       this.valueGreen = Math.floor(Math.random() * 256)
       this.valueBlue = Math.floor(Math.random() * 256)
-      this.loading = true
 
       fetch(`https://www.thecolorapi.com/id?rgb=(${this.valueRed},${this.valueGreen},${this.valueBlue})`)
         .then(response => response.json())
@@ -125,39 +122,33 @@ export default Vue.extend({
     updateColorData(data) {
       this.colorName = data.name.value
       this.colorHex = data.hex.clean
-      this.loading = false
     }
   },
   watch: {
     searchHex: function(value) {
       if (!value.match(/[0-9A-Fa-f]{6}/g)) return
-      this.loading = true
 
       fetch(`https://www.thecolorapi.com/id?hex=${value}`)
         .then(response => response.json())
         .then(data => {
           this.colorName = data.name.value
           this.colorHex = data.hex.clean
-          this.loading = false
           this.valueRed = data.rgb.r
           this.valueGreen = data.rgb.g
           this.valueBlue = data.rgb.b
         })
     },
     valueRed: function(value) {
-      this.loading = true
       fetch(`https://www.thecolorapi.com/id?rgb=(${value},${this.valueGreen},${this.valueBlue})`)
         .then(response => response.json())
         .then(data => this.updateColorData(data))
     },
     valueGreen: function(value) {
-      this.loading = true
       fetch(`https://www.thecolorapi.com/id?rgb=(${this.valueRed},${value},${this.valueBlue})`)
         .then(response => response.json())
         .then(data => this.updateColorData(data))
     },
     valueBlue: function(value) {
-      this.loading = true
       fetch(`https://www.thecolorapi.com/id?rgb=(${this.valueRed},${this.valueGreen},${value})`)
         .then(response => response.json())
         .then(data => this.updateColorData(data))

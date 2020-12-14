@@ -1,7 +1,5 @@
 <template>
   <div class="color-controls">
-    <font-awesome-icon class="button--icon" v-if="loading" :icon="['fas', 'spinner']" spin />
-
     <button class="button--icon" :class="{ 'button--icon__dark': textColor }" @click="showCommandIndex">
       <font-awesome-icon :icon="['fas', 'paint-brush']" />
     </button>
@@ -20,9 +18,6 @@ import Vue from 'vue'
 
 export default Vue.extend({
   props: {
-    loading: {
-      type: Boolean
-    },
     locked: {
       type: Boolean
     },
@@ -55,6 +50,7 @@ export default Vue.extend({
     font-size: 3rem;
     margin: 0.5rem;
     padding: 1rem;
+    width: 6rem;
   }
 
   .button--icon__dark {
