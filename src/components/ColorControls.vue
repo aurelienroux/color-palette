@@ -1,10 +1,18 @@
 <template>
   <div class="color-controls">
-    <h3 v-if="!loading">loading</h3>
-    <button @click="showCommandIndex">show command</button>
+    <font-awesome-icon v-if="!loading" :icon="['fas', 'spinner']" spin />
+
+    <button @click="showCommandIndex">
+      <font-awesome-icon v-if="!loading" :icon="['fas', 'paint-brush']" />
+    </button>
+
     <button @click="toggleLock">
-      <div v-if="locked">locked</div>
-      <div v-else>un-locked</div>
+      <div v-if="locked">
+        <font-awesome-icon v-if="!loading" :icon="['fas', 'lock']" />
+      </div>
+      <div v-else>
+        <font-awesome-icon v-if="!loading" :icon="['fas', 'lock-open']" />
+      </div>
     </button>
   </div>
 </template>
