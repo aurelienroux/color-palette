@@ -19,7 +19,7 @@ export default Vue.extend({
   },
   methods: {
     closeColorCommands() {
-      this.$store.commit('commandIndex', null)
+      this.$store.commit('colorCommandsIndex', null)
     }
   }
 })

@@ -15,7 +15,7 @@ export default new Vuex.Store({
     removeColor(state) {
       state.colors--
     },
-    commandIndex(state, index) {
+    colorCommandsIndex(state, index) {
       state.colorCommand = index
     }
   },

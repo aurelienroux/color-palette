@@ -6,10 +6,10 @@
       :locked="locked"
       :textColor="textColor"
       @toggleLock="toggleLock"
-      @showCommandIndex="showCommandIndex"
+      @showColorCommandsIndex="showColorCommandsIndex"
     />
 
-    <div v-if="commandIndex === index" class="drawers">
+    <div v-if="colorCommandsIndex === index" class="drawers">
       <div class="close" @click="close">
         <font-awesome-icon :icon="['fas', 'times']" />
       </div>
@@ -94,21 +94,21 @@ export default Vue.extend({
         return false
       }
     },
-    commandIndex() {
+    colorCommandsIndex() {
       return this.$store.state.colorCommand
     }
   },
   methods: {
-    showCommandIndex() {
+    showColorCommandsIndex() {
       this.opened = null
-      if (this.commandIndex === this.index) {
-        this.$store.commit('commandIndex', null)
+      if (this.colorCommandsIndex === this.index) {
+        this.$store.commit('colorCommandsIndex', null)
       } else {
-        this.$store.commit('commandIndex', this.index)
+        this.$store.commit('colorCommandsIndex', this.index)
       }
     },
     close() {
-      this.$store.commit('commandIndex', null)
+      this.$store.commit('colorCommandsIndex', null)
     },
     toggleDrawer(drawer) {
       this.opened = drawer
@@ -165,7 +165,7 @@ export default Vue.extend({
     randomizeColorsBus.$on('changeColor', () => {
       if (this.locked) return
 
-      this.$store.commit('commandIndex', null)
+      this.$store.commit('colorCommandsIndex', null)
       this.randomBackground()
     })
   }

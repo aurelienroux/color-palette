@@ -1,6 +1,6 @@
 <template>
   <div class="color-controls">
-    <button :class="{ dark: textColor }" @click="showCommandIndex">
+    <button :class="{ dark: textColor }" @click="showColorCommandsIndex">
       <font-awesome-icon :icon="['fas', 'paint-brush']" />
     </button>
 
@@ -27,8 +27,8 @@ export default Vue.extend({
     toggleLock() {
       this.$emit('toggleLock')
     },
-    showCommandIndex() {
-      this.$emit('showCommandIndex')
+    showColorCommandsIndex() {
+      this.$emit('showColorCommandsIndex')
     }
   }
 })
