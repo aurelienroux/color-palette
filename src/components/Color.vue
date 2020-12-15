@@ -16,16 +16,16 @@
       <div class="drawer" :class="{ open: opened === 'rgb' }" @click="toggleDrawer('rgb')">
         <h3>rgb</h3>
         <div class="container">
-          <div>
-            <span>red: {{ valueRed }}</span>
+          <div class="picker">
+            <span>R: {{ valueRed }}</span>
             <input type="range" min="0" max="255" v-model="valueRed" />
           </div>
-          <div>
-            <span>green: {{ valueGreen }}</span>
+          <div class="picker">
+            <span>G: {{ valueGreen }}</span>
             <input type="range" min="0" max="255" v-model="valueGreen" />
           </div>
-          <div>
-            <span>blue: {{ valueBlue }}</span>
+          <div class="picker">
+            <span>B: {{ valueBlue }}</span>
             <input type="range" min="0" max="255" v-model="valueBlue" />
           </div>
         </div>
@@ -180,20 +180,22 @@ export default Vue.extend({
   }
 
   .drawers {
-    border: 1px solid grey;
+    background: white;
     border-radius: 10px;
+    border: 1px solid grey;
     color: black;
     left: calc(50% - 12rem);
     min-width: 24rem;
     position: absolute;
     top: 40%;
     z-index: 11;
-    background: white;
   }
 
   .drawer {
-    cursor: pointer;
     border-bottom: 1px solid grey;
+    cursor: pointer;
+    font-size: 1.2rem;
+    text-transform: uppercase;
 
     &:last-of-type {
       border-bottom: none;
@@ -201,13 +203,30 @@ export default Vue.extend({
 
     & .container {
       box-sizing: border-box;
-      overflow: hidden;
       height: 0;
+      overflow: hidden;
     }
 
     &.open .container {
-      padding: 2rem;
       height: auto;
+      padding: 1rem 1rem 1.5rem;
+    }
+
+    input {
+      border: none;
+      border-bottom: 1px solid grey;
+      cursor: pointer;
+      font-size: 1.7rem;
+      max-width: 7rem;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .picker {
+      align-items: center;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem;
     }
   }
 }

@@ -1,10 +1,10 @@
 <template>
   <div class="color-controls">
-    <button class="button--icon" :class="{ 'button--icon__dark': textColor }" @click="showCommandIndex">
+    <button :class="{ dark: textColor }" @click="showCommandIndex">
       <font-awesome-icon :icon="['fas', 'paint-brush']" />
     </button>
 
-    <button class="button--icon" :class="{ 'button--icon__dark': textColor }" @click="toggleLock">
+    <button :class="{ dark: textColor }" @click="toggleLock">
       <font-awesome-icon v-if="locked" :icon="['fas', 'lock']" />
       <font-awesome-icon v-if="!locked" :icon="['fas', 'lock-open']" />
     </button>
@@ -40,7 +40,7 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
 
-  .button--icon {
+  button {
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -48,10 +48,10 @@ export default Vue.extend({
     margin: 0.5rem;
     padding: 1rem;
     width: 6rem;
-  }
 
-  .button--icon__dark {
-    color: white;
+    &.dark {
+      color: white;
+    }
   }
 }
 </style>
