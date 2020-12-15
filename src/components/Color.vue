@@ -20,16 +20,22 @@
         <div class="title">rgb</div>
         <div class="container">
           <div class="picker">
-            <span>R: {{ valueRed }}</span>
-            <input type="range" min="0" max="255" v-model="valueRed" />
+            <span>R:</span>
+            <button class="color-increment" @click="valueRed--">-</button>
+            <input type="number" min="0" max="255" v-model="valueRed" />
+            <button class="color-decrement" @click="valueRed--">+</button>
           </div>
           <div class="picker">
-            <span>G: {{ valueGreen }}</span>
-            <input type="range" min="0" max="255" v-model="valueGreen" />
+            <span>G:</span>
+            <button class="color-increment" @click="valueGreen--">-</button>
+            <input type="number" min="0" max="255" v-model="valueGreen" />
+            <button class="color-decrement" @click="valueGreen--">+</button>
           </div>
           <div class="picker">
-            <span>B: {{ valueBlue }}</span>
-            <input type="range" min="0" max="255" v-model="valueBlue" />
+            <span>B:</span>
+            <button class="color-increment" @click="valueBlue--">-</button>
+            <input type="number" min="0" max="255" v-model="valueBlue" />
+            <button class="color-decrement" @click="valueBlue--">+</button>
           </div>
         </div>
       </div>
@@ -188,8 +194,8 @@ export default Vue.extend({
     background: $white;
     border-radius: 1rem;
     color: $black;
-    left: calc(50% - 12rem);
-    min-width: 24rem;
+    left: calc(50% - 10rem);
+    min-width: 20rem;
     position: absolute;
     top: 40%;
     z-index: 11;
@@ -224,7 +230,28 @@ export default Vue.extend({
       padding: 1rem;
     }
 
-    input {
+    .color-increment {
+      border-radius: 5px 0 0 5px;
+      border: 0.1rem solid $grey;
+      padding: 0.5rem 0.8rem;
+    }
+
+    .color-decrement {
+      border-radius: 0 5px 5px 0;
+      border: 0.1rem solid $grey;
+      padding: 0.5rem 0.8rem;
+    }
+
+    input[type='number'] {
+      background: transparent;
+      border: none;
+      border-bottom: 0.1rem solid $grey;
+      border-top: 0.1rem solid $grey;
+      padding: 0.5rem 0.8rem;
+      text-align: center;
+    }
+
+    input[type='text'] {
       background: transparent;
       border: none;
       border-bottom: 0.1rem solid $grey;
@@ -238,8 +265,13 @@ export default Vue.extend({
     .picker {
       align-items: center;
       display: flex;
+      font-size: 1.3rem;
       justify-content: space-around;
       padding: 0.5rem;
+
+      span {
+        flex: 1;
+      }
     }
   }
 }
