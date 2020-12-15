@@ -29,11 +29,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   color: #2c3e50;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  height: 100vh;
-  text-align: center;
-
   display: flex;
   flex-direction: column;
+  font-family: 'Nunito', sans-serif;
+  height: 100vh;
+  text-align: center;
 }
 </style>

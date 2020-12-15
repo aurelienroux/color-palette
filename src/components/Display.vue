@@ -23,7 +23,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .display {
   display: flex;
-  flex: 4;
+  flex: 5;
   flex-direction: column;
 
   @include for-desktop-up {

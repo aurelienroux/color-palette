@@ -23,7 +23,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .title {
   h2 {
-    font-size: 3rem;
+    font-size: 2.4rem;
   }
 
   h3 {

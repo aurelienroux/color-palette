@@ -8,8 +8,6 @@
       <font-awesome-icon v-if="locked" :icon="['fas', 'lock']" />
       <font-awesome-icon v-if="!locked" :icon="['fas', 'lock-open']" />
     </button>
-
-    {{ textColor }}
   </div>
 </template>
 
@@ -38,10 +36,9 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .color-controls {
-  padding: 2rem;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   .button--icon {
     background-color: transparent;
