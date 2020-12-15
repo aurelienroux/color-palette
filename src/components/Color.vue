@@ -21,21 +21,21 @@
         <div class="container">
           <div class="picker">
             <span>R:</span>
-            <button class="color-increment" @click="valueRed--">-</button>
+            <button class="color-increment" @click="valueRed--" :disabled="valueRed === 0">-</button>
             <input type="number" min="0" max="255" v-model="valueRed" />
-            <button class="color-decrement" @click="valueRed--">+</button>
+            <button class="color-decrement" @click="valueRed++" :disabled="valueRed === 255">+</button>
           </div>
           <div class="picker">
             <span>G:</span>
-            <button class="color-increment" @click="valueGreen--">-</button>
+            <button class="color-increment" @click="valueGreen--" :disabled="valueGreen === 0">-</button>
             <input type="number" min="0" max="255" v-model="valueGreen" />
-            <button class="color-decrement" @click="valueGreen--">+</button>
+            <button class="color-decrement" @click="valueGreen++" :disabled="valueGreen === 255">+</button>
           </div>
           <div class="picker">
             <span>B:</span>
-            <button class="color-increment" @click="valueBlue--">-</button>
+            <button class="color-increment" @click="valueBlue--" :disabled="valueBlue === 0">-</button>
             <input type="number" min="0" max="255" v-model="valueBlue" />
-            <button class="color-decrement" @click="valueBlue--">+</button>
+            <button class="color-decrement" @click="valueBlue++" :disabled="valueBlue === 255">+</button>
           </div>
         </div>
       </div>
@@ -230,35 +230,37 @@ export default Vue.extend({
       padding: 1rem;
     }
 
-    .color-increment {
-      border-radius: 5px 0 0 5px;
+    .color-increment,
+    .color-decrement {
       border: 0.1rem solid $grey;
       padding: 0.5rem 0.8rem;
+    }
+
+    .color-increment {
+      border-radius: 5px 0 0 5px;
     }
 
     .color-decrement {
       border-radius: 0 5px 5px 0;
-      border: 0.1rem solid $grey;
-      padding: 0.5rem 0.8rem;
     }
 
-    input[type='number'] {
-      background: transparent;
-      border: none;
-      border-bottom: 0.1rem solid $grey;
-      border-top: 0.1rem solid $grey;
-      padding: 0.5rem 0.8rem;
-      text-align: center;
-    }
-
+    input[type='number'],
     input[type='text'] {
       background: transparent;
       border: none;
       border-bottom: 0.1rem solid $grey;
+      text-align: center;
+    }
+
+    input[type='number'] {
+      border-top: 0.1rem solid $grey;
+      padding: 0.5rem 0.8rem;
+    }
+
+    input[type='text'] {
       cursor: pointer;
       font-size: 1.7rem;
       max-width: 7rem;
-      text-align: center;
       text-transform: uppercase;
     }
 

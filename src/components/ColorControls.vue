@@ -42,11 +42,8 @@ export default Vue.extend({
 
   button {
     background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     margin: 0.5rem;
-    padding: 1rem;
     width: 6rem;
 
     @include for-tablet-portrait-up {

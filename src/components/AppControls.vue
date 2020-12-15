@@ -1,8 +1,8 @@
 <template>
   <div class="controls">
-    <button @click="addColor" :disabled="colorDisplay === 5">+</button>
     <button @click="randomizeColors">randomize</button>
     <button @click="removeColor" :disabled="colorDisplay === 2">-</button>
+    <button @click="addColor" :disabled="colorDisplay === 5">+</button>
   </div>
 </template>
 
@@ -41,18 +41,15 @@ export default Vue.extend({
   button {
     background-color: $blue-text;
     border-radius: 0.5rem;
-    border: none;
     color: $white;
-    cursor: pointer;
     font-size: 2rem;
     font-weight: bold;
     margin: 1rem;
     min-width: 4rem;
-    padding: 1rem;
     text-transform: uppercase;
 
     &:disabled {
-      background-color: lighten($color: $blue-text, $amount: 50);
+      background-color: $grey;
       cursor: not-allowed;
     }
   }

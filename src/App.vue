@@ -33,4 +33,10 @@ export default {
   height: 100vh;
   text-align: center;
 }
+
+button {
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+}
 </style>
