@@ -1,5 +1,5 @@
 <template>
-  <div class="title">
+  <div class="title" @click="closeColorCommands">
     <h2>{{ colorHex }}</h2>
     <h3>{{ colorName }}</h3>
   </div>
@@ -15,6 +15,11 @@ export default Vue.extend({
     },
     colorHex: {
       type: String
+    }
+  },
+  methods: {
+    closeColorCommands() {
+      this.$store.commit('commandIndex', null)
     }
   }
 })

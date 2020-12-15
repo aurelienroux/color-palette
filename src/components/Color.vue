@@ -10,6 +10,9 @@
     />
 
     <div v-if="commandIndex === index" class="drawers">
+      <div class="close" @click="close">
+        <font-awesome-icon :icon="['fas', 'times']" />
+      </div>
       <div class="drawer">
         <div class="title" @click="randomBackground">random</div>
       </div>
@@ -104,6 +107,9 @@ export default Vue.extend({
         this.$store.commit('commandIndex', this.index)
       }
     },
+    close() {
+      this.$store.commit('commandIndex', null)
+    },
     toggleDrawer(drawer) {
       this.opened = drawer
     },
@@ -189,15 +195,18 @@ export default Vue.extend({
     z-index: 11;
   }
 
+  .close {
+    text-align: right;
+    padding: 1rem 1rem 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
   .drawer {
-    border-bottom: 0.1rem solid $grey;
+    border-top: 0.1rem solid $grey;
     cursor: pointer;
     font-size: 1.2rem;
     text-transform: uppercase;
-
-    &:last-of-type {
-      border-bottom: none;
-    }
 
     & .container {
       box-sizing: border-box;
