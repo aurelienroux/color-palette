@@ -44,13 +44,17 @@ export default Vue.extend({
     background-color: transparent;
     border: none;
     cursor: pointer;
-    font-size: 3rem;
+    font-size: 2.4rem;
     margin: 0.5rem;
     padding: 1rem;
     width: 6rem;
 
+    @include for-tablet-portrait-up {
+      font-size: 3rem;
+    }
+
     &.dark {
-      color: white;
+      color: $white;
     }
   }
 }

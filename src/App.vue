@@ -19,8 +19,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/styles/index.scss';
-
 :root {
   font-size: 62.5%;
 }
@@ -28,10 +26,10 @@ export default {
 #app {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  color: #2c3e50;
+  color: $blue-text;
   display: flex;
   flex-direction: column;
-  font-family: 'Nunito', sans-serif;
+  font-family: $nunito-font;
   height: 100vh;
   text-align: center;
 }

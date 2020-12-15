@@ -36,13 +36,13 @@ export default Vue.extend({
   display: flex;
   flex: 1;
   justify-content: center;
-  padding: 4rem 2rem 6rem;
+  padding: 1rem;
 
   button {
-    background-color: blue;
+    background-color: $blue-text;
     border-radius: 0.5rem;
     border: none;
-    color: white;
+    color: $white;
     cursor: pointer;
     font-size: 2rem;
     font-weight: bold;
@@ -52,7 +52,7 @@ export default Vue.extend({
     text-transform: uppercase;
 
     &:disabled {
-      background-color: red;
+      background-color: lighten($color: $blue-text, $amount: 50);
       cursor: not-allowed;
     }
   }

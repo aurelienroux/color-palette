@@ -11,10 +11,10 @@
 
     <div v-if="commandIndex === index" class="drawers">
       <div class="drawer">
-        <h3 @click="randomBackground">random</h3>
+        <div class="title" @click="randomBackground">random</div>
       </div>
       <div class="drawer" :class="{ open: opened === 'rgb' }" @click="toggleDrawer('rgb')">
-        <h3>rgb</h3>
+        <div class="title">rgb</div>
         <div class="container">
           <div class="picker">
             <span>R: {{ valueRed }}</span>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="drawer" :class="{ open: opened === 'picker' }" @click="toggleDrawer('picker')">
-        <h3>hex</h3>
+        <div class="title">hex</div>
         <div class="container">
           <input type="text" maxlength="6" :placeholder="colorHex" v-model="searchHex" />
         </div>
@@ -171,19 +171,17 @@ export default Vue.extend({
   display: flex;
   flex-direction: column-reverse;
   flex: 1;
-  min-height: 19rem;
   padding: 2rem;
   position: relative;
 
   &.dark {
-    color: white;
+    color: $white;
   }
 
   .drawers {
-    background: white;
-    border-radius: 10px;
-    border: 1px solid grey;
-    color: black;
+    background: $white;
+    border-radius: 1rem;
+    color: $black;
     left: calc(50% - 12rem);
     min-width: 24rem;
     position: absolute;
@@ -192,7 +190,7 @@ export default Vue.extend({
   }
 
   .drawer {
-    border-bottom: 1px solid grey;
+    border-bottom: 0.1rem solid $grey;
     cursor: pointer;
     font-size: 1.2rem;
     text-transform: uppercase;
@@ -212,9 +210,15 @@ export default Vue.extend({
       padding: 1rem 1rem 1.5rem;
     }
 
+    .title {
+      font-size: 1.5rem;
+      padding: 1rem;
+    }
+
     input {
+      background: transparent;
       border: none;
-      border-bottom: 1px solid grey;
+      border-bottom: 0.1rem solid $grey;
       cursor: pointer;
       font-size: 1.7rem;
       max-width: 7rem;

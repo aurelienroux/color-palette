@@ -23,11 +23,19 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .title {
   h2 {
-    font-size: 2.4rem;
+    font-size: 1.8rem;
+
+    @include for-tablet-portrait-up {
+      font-size: 2.4rem;
+    }
   }
 
   h3 {
-    font-size: 2rem;
+    font-size: 1.4rem;
+
+    @include for-tablet-portrait-up {
+      font-size: 2rem;
+    }
   }
 }
 </style>
