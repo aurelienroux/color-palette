@@ -30,8 +30,11 @@ export default {
   display: flex;
   flex-direction: column;
   font-family: $nunito-font;
-  height: 100vh;
   text-align: center;
+
+  @include for-desktop-up {
+    height: 100vh;
+  }
 }
 
 button {
